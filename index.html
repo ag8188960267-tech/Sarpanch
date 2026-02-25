@@ -4,25 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarpanch-Cricket🏏 (ASTRO)</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <style>
-body{background:#000;color:white;display:flex;justify-content:center;align-items:center;height:100vh;}
-.card{background:rgba(255,255,255,0.1);padding:30px;border-radius:20px;text-align:center;}
-.logo{border-radius:50%;width:120px;height:120px;object-fit:cover;border:3px solid gold;}
-.join-btn{background:gold;padding:15px;border-radius:10px;color:black;display:block;margin-top:20px;text-decoration:none;}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap');
+*{font-family:'Poppins',sans-serif;}
+
+body{
+min-height:100vh;
+background:radial-gradient(circle at top,#020617,#000);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(25px);
+border-radius:30px;
+padding:30px;
+box-shadow:0 0 40px gold,0 0 120px red;
+border:2px solid rgba(255,215,0,.6);
+animation:glow 4s infinite alternate;
+max-width:400px;
+width:100%;
+text-align:center;
+color:white;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 20px gold,0 0 60px orange}
+to{box-shadow:0 0 50px cyan,0 0 150px magenta}
+}
+
+.logo{
+border-radius:50%;
+border:4px solid gold;
+box-shadow:0 0 30px gold,0 0 80px orange;
+animation:pulse 2s infinite;
+width:130px;
+height:130px;
+object-fit:cover;
+margin:auto;
+}
+
+@keyframes pulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.1)}
+}
+
+.join-btn{
+background:linear-gradient(135deg,#ffd700,#ff0080);
+font-family:'Bebas Neue',sans-serif;
+letter-spacing:2px;
+padding:18px;
+border-radius:15px;
+position:relative;
+overflow:hidden;
+transition:.3s;
+display:block;
+margin-top:20px;
+font-size:20px;
+}
+
+.join-btn::before{
+content:'';
+position:absolute;
+top:0;left:-100%;
+width:100%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+animation:shine 2s infinite;
+}
+
+@keyframes shine{
+from{left:-100%}
+to{left:200%}
+}
+
+.join-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px gold,0 0 120px magenta;
+}
+
+.live{
+animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:1}
+50%{opacity:.4}
+}
 </style>
 </head>
+
 <body>
+
 <div class="card">
-<img src="logo.jpg" class="logo">
-<h1>Sarpanch-Cricket🏏 (ASTRO)</h1>
-<p>Premium Cricket Predictions</p>
-<a href="https://t.me/+tJpoPb1RvAg1MDBl" class="join-btn">JOIN TELEGRAM</a>
+
+<img src="logo.jpg" class="logo mb-4">
+
+<div class="mb-3">
+<span class="bg-green-500 text-black px-4 py-1 rounded-full text-sm font-bold live">● LIVE MATCH TIPS</span>
 </div>
+
+<h1 class="text-4xl font-bold mb-1" style="font-family:'Bebas Neue',sans-serif;">
+Sarpanch-Cricket🏏 (ASTRO)
+</h1>
+
+<p class="text-yellow-400 tracking-widest mb-4">Premium Cricket Predictions</p>
+
+<div class="space-y-2 text-lg font-semibold mb-6">
+<p>🏆 IPL 2024 : <span class="text-green-400">68/74 PASS</span></p>
+<p>🔥 IPL 2025 : <span class="text-yellow-400">Free Tips</span></p>
+<p>⭐ 12+ Years Experience</p>
+<p>👥 Members Joined: <span id="counter" class="text-cyan-400">10234</span></p>
+</div>
+
+<a href="https://t.me/+tJpoPb1RvAg1MDBl" target="_blank" class="join-btn">
+<i class="fab fa-telegram"></i> JOIN TELEGRAM CHANNEL
+</a>
+
+<p class="text-gray-300 text-xs mt-4">
+100% Free • Fast Updates • Trusted Brand
+</p>
+
+<p id="redirectText" class="text-sm text-red-400 mt-2"></p>
+
+</div>
+
 <script>
-confetti();
+confetti({particleCount:150,spread:80,origin:{y:0.6}});
+
+let count = 10234;
+setInterval(()=>{
+count++;
+document.getElementById("counter").innerText = count;
+},3000);
+
+let sec = 5;
+let timer = setInterval(()=>{
+document.getElementById("redirectText").innerText = "Redirecting in "+sec+" seconds...";
+sec--;
+if(sec<0){
+clearInterval(timer);
+window.location.href="https://t.me/+tJpoPb1RvAg1MDBl";
+}
+},1000);
 </script>
+
 </body>
 </html>
